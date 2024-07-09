@@ -39,8 +39,14 @@
 </head>
 
 <body class="relative">
-<x-header />
-{{ $slot }}
+<x-header>
+    {{ $header }}
+</x-header>
+
+
+<main>
+    {{ $slot }}
+</main>
 
 
 @filamentScripts()

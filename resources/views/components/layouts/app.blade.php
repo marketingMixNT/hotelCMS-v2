@@ -45,7 +45,7 @@
 
 
 <main>
-    {{ $slot }}
+    {{ $main }}
 </main>
 
 

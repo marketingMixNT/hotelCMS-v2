@@ -8,7 +8,8 @@ export default {
     theme: {
         extend: {
             screens: {
-                xs: "390px",
+                xxs: "390px",
+                xs: "450px",
                 "3xl": "1920px",
                 max: "2200px",
             },
@@ -18,8 +19,12 @@ export default {
                 },
                 secondary: {
                     400: "#f9beac",
+                    600: "#ebb3a2",
                 },
-               
+               background:{
+                200: "#ffffff",
+                300: "#fafafa",
+               }
 
             },
         },

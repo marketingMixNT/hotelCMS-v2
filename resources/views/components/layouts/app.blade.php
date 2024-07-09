@@ -17,7 +17,7 @@
     @endisset
 
     <!--Title-->
-    <title>{{ isset($title) ? $title : '' }} - </title>
+    <title>{{ isset($title) ? $title : '' }} - Sunny Shoreline</title>
     <meta name="description" content="{{ isset($description) ? $description : '' }}">
 
 
@@ -25,24 +25,25 @@
     <link rel="canonical" href="{{ url()->current() }}" />
 
     <!--Favicon-->
-    {{-- @include('partials.favicon') --}}
+    @include('partials.favicon')
 
     <!--Fonts-->
-    {{-- @include('partials.fonts') --}}
+    @include('partials.fonts')
 
 
 
 
     @filamentStyles
     @vite('resources/scss/app.scss')
+
 </head>
 
-<body>
+<body class="relative">
+<x-header />
+{{ $slot }}
 
-<h1 class="text-red-600">siema</h1>
 
-
-
+@filamentScripts()
 @vite('resources/js/app.js')
 </body>
 

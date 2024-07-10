@@ -1,0 +1,16 @@
+models:
+  Post:
+    title: text
+    slug: text
+    thumbnail: text
+    content: text
+    published_at: datetime nullable
+    featured: boolean nullable
+    relationships:
+      belongsTo: Category
+  Category:
+    title: string
+    slug: string
+    type: string
+    relationships:
+      belongsToMany: Post, Apartment

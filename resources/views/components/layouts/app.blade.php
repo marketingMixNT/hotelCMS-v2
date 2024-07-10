@@ -39,16 +39,16 @@
 </head>
 
 <body class="relative">
-<x-header>
+<x-shared.header>
     {{ $header }}
-</x-header>
+</x-shared.header>
 
 
 <main>
     {{ $main }}
 </main>
 
-
+<x-shared.footer/>
 @filamentScripts()
 @vite('resources/js/app.js')
 </body>

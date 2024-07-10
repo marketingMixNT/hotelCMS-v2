@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -22,7 +22,6 @@ class Post extends Model
         'content',
         'published_at',
         'featured',
-        'category_id',
     ];
 
     /**
@@ -34,11 +33,10 @@ class Post extends Model
         'id' => 'integer',
         'published_at' => 'datetime',
         'featured' => 'boolean',
-        'category_id' => 'integer',
     ];
 
-    public function category(): BelongsTo
+    public function categories(): BelongsToMany
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 }

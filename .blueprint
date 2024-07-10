@@ -1,12 +1,13 @@
 created:
     - database/factories/PostFactory.php
     - database/factories/CategoryFactory.php
-    - database/migrations/2024_07_10_105621_create_posts_table.php
-    - database/migrations/2024_07_10_105622_create_categories_table.php
-    - database/migrations/2024_07_10_105623_create_category_post_table.php
-    - database/migrations/2024_07_10_105624_create_apartment_category_table.php
+    - database/migrations/2024_07_10_143145_create_posts_table.php
+    - database/migrations/2024_07_10_143146_create_categories_table.php
+    - database/migrations/2024_07_10_143147_create_category_post_table.php
+    - database/migrations/2024_07_10_143148_create_apartment_category_table.php
     - app/Models/Post.php
     - app/Models/Category.php
 models:
-    Post: { title: text, slug: text, thumbnail: text, content: text, published_at: 'datetime nullable', featured: 'boolean nullable', relationships: { belongsTo: Category } }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
+    Post: { title: text, slug: text, thumbnail: text, content: text, published_at: 'datetime nullable', featured: 'boolean nullable', relationships: { belongsToMany: Category } }
     Category: { title: string, slug: string, type: string, relationships: { belongsToMany: 'Post, Apartment' } }

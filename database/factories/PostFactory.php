@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Category;
 use App\Models\Post;
 
 class PostFactory extends Factory
@@ -28,7 +27,6 @@ class PostFactory extends Factory
             'content' => $this->faker->paragraphs(3, true),
             'published_at' => $this->faker->dateTime(),
             'featured' => $this->faker->boolean(),
-            'category_id' => Category::factory(),
         ];
     }
 }

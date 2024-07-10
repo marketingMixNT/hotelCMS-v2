@@ -28,7 +28,7 @@ class Category extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'type'=>'array',
+        'type'=>'array'
     ];
 
     public function posts(): BelongsToMany

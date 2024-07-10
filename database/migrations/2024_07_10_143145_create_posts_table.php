@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('content');
             $table->dateTime('published_at')->nullable();
             $table->boolean('featured')->nullable();
-            $table->foreignId('category_id');
             $table->timestamps();
         });
     }

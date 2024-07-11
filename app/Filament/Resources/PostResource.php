@@ -188,4 +188,18 @@ class PostResource extends Resource
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return ('Posty');
+    }
+    public static function getPluralLabel(): string
+    {
+        return ('Posty');
+    }
+
+    public static function getLabel(): string
+    {
+        return ('Post');
+    }
 }

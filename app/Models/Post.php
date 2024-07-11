@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
@@ -38,5 +40,27 @@ class Post extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
+    }
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<=', Carbon::now());
+    }
+    public function getExcerpt()
+    {
+        return Str::limit(strip_tags($this->content), 300);
+    }
+    public function getThumbnailUrl()
+    {
+        return  asset('storage/' . $this->thumbnail);
+    }
+    public function getPublishedDate()
+    {
+        return  $this->published_at->diffForHumans();
+    }
+    public function getReadingTime()
+    {
+        $mins = round(str_word_count($this->content) / 250);
+
+        return ($mins < 1) ? 1 : $mins;
     }
 }

@@ -6,9 +6,10 @@
     {{-- CATEGORIES --}}
     <x-section class="py-0">
         <ul class="flex justify-center items-center gap-6 flex-wrap">
-
+            <button  wire:click='setCategory("")'  class="{{ $this->category === "" ? 'bg-red-200' : '' }}" >all</button>
             @foreach ($this->categories as $category)
-                <li><x-link-btn type='third' href="{{ $category->slug }}">{{ $category->title }}</x-link-btn></li>
+                {{-- <li><x-link-btn type='third' href="{{ $category->slug }}">{{ $category->title }}</x-link-btn></li> --}}
+                <button  wire:click='setCategory("{{ $category->slug }}")' class="{{ $category->slug === $this->category ? 'bg-red-200' : '' }}">{{ $category->title }}</button>
             @endforeach
         </ul>
     </x-section>

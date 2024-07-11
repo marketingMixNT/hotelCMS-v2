@@ -45,6 +45,13 @@ class Post extends Model
     {
         $query->where('published_at', '<=', Carbon::now());
     }
+
+    public function scopeWithCategory($query, $slug)
+    {
+        return $query->whereHas('categories', function ($q) use ($slug) {
+            $q->where('slug', $slug);
+        });
+    }
     public function getExcerpt()
     {
         return Str::limit(strip_tags($this->content), 300);

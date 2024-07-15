@@ -5,38 +5,38 @@ namespace App\Livewire;
 use App\Models\Post;
 use Livewire\Component;
 use App\Models\Category;
-use Livewire\Attributes\Url;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Computed;
 
 class PostList extends Component
 {
     use WithPagination;
 
-    #[Url()]
+    #[Url]
     public $category = '';
-  
 
-    #[Computed()]
-    public function posts()
+    #[Computed]
+    public function getPostsProperty()
     {
         return Post::published()
             ->with('categories')
             ->when($this->category, function ($query) {
-                $query->withCategory($this->category);
+                $query->whereHas('categories', function ($query) {
+                    $query->where('slug', $this->category);
+                });
             })
             ->orderBy('published_at', 'desc')
             ->paginate(4);
     }
 
-
-    #[Computed()]
-    public function categories()
+    #[Computed]
+    public function getCategoriesProperty()
     {
         return Category::whereJsonContains('type', 'posty')->get();
     }
 
-    #[Url()]
+    #[Url]
     public function setCategory($slug)
     {
         $this->category = $slug;
@@ -45,6 +45,9 @@ class PostList extends Component
 
     public function render()
     {
-        return view('livewire.post-list');
+        return view('livewire.post-list', [
+            'posts' => $this->posts,
+            'categories' => $this->categories
+        ]);
     }
 }

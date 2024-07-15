@@ -24,6 +24,18 @@ class BlogController extends Controller
 
     public function show(Post $post): View
     {
-        return view("pages.blog.show", compact("post"));
+
+        $posts = Post::published()->orderByDesc('published_at')->take(4)->get();
+
+
+        $filteredPosts = $posts->filter(function ($p) use ($post) {
+            return $p->id !== $post->id;
+        });
+
+
+        $latestPosts = $filteredPosts->take(3);
+
+
+        return view("pages.blog.show", compact("post", 'latestPosts'));
     }
 }

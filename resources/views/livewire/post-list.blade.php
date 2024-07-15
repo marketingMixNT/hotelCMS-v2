@@ -5,14 +5,14 @@
     </x-section>
     {{-- FIRST POST --}}
     <x-section tight>
-        <x-blog.first-post-index :post="$posts->first()" />
+        <x-blog.first-post-index :post="$posts->first()" :key="$posts->first()->id"/>
     </x-section>
 
     {{-- OTHER POSTS --}}
     <x-section tight>
-        <div class="grid grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             @foreach ($posts->skip(1) as $post)
-                <x-blog.other-post-index :post="$post" />
+                <x-blog.other-post-index :post="$post" :key="$post->id" />
             @endforeach
         </div>
 

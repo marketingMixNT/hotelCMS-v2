@@ -33,7 +33,7 @@
 
 
 
-    @filamentStyles
+    {{-- @filamentStyles --}}
     @vite('resources/scss/app.scss')
 
 </head>
@@ -49,7 +49,7 @@
 </main>
 
 <x-shared.footer/>
-@filamentScripts()
+{{-- @filamentScripts() --}}
 @vite('resources/js/app.js')
 </body>
 

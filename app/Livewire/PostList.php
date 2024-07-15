@@ -41,6 +41,8 @@ class PostList extends Component
     {
         $this->category = $slug;
         $this->resetPage();
+        $this->emitSelf('refreshComponent');
+        
     }
 
     public function render()

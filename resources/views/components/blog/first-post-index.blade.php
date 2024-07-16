@@ -12,7 +12,7 @@
         <div class="flex justify-start items-center gap-5">
 
             @foreach ($post->categories as $category)
-                <x-link-btn type='secondary'  type='secondary'
+                <x-link-btn wire:navigate type='secondary'  type='secondary' :key="$category->slug"
                     href="{{ route('blog.index', ['category' => $category->slug]) }}">{{ $category->title }}</x-link-btn>
             @endforeach
 

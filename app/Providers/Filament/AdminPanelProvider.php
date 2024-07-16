@@ -30,11 +30,12 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->passwordReset()
-            ->brandLogo('/assets/logo/logo.webp')
+            ->brandLogo('/assets/logo--bg.jpg')
             ->favicon('/assets/favicon/favicon.ico')
             ->brandLogoHeight(fn () => auth()->check() ? '40px' : '100px')
             ->colors([
-                'primary' => Color::Violet,
+                'primary' => Color::hex('#ba0d2f'),
+                'gray' => Color::hex('#2f4571'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -43,8 +44,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\AccountWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -1,13 +1,9 @@
 created:
-    - database/factories/PostFactory.php
-    - database/factories/CategoryFactory.php
-    - database/migrations/2024_07_10_143145_create_posts_table.php
-    - database/migrations/2024_07_10_143146_create_categories_table.php
-    - database/migrations/2024_07_10_143147_create_category_post_table.php
-    - database/migrations/2024_07_10_143148_create_apartment_category_table.php
-    - app/Models/Post.php
-    - app/Models/Category.php
+    - database/factories/AdvantageFactory.php
+    - database/migrations/2024_07_16_081442_create_advantages_table.php
+    - app/Models/Advantage.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
     Post: { title: text, slug: text, thumbnail: text, content: text, published_at: 'datetime nullable', featured: 'boolean nullable', relationships: { belongsToMany: Category } }
     Category: { title: string, slug: string, type: string, relationships: { belongsToMany: 'Post, Apartment' } }
+    Advantage: { title: text, thumbnail: text, order: 'integer nullable' }

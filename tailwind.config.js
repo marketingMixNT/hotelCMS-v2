@@ -1,11 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "./resources/**/*.blade.php",
-        "./vendor>/awcodes/filament-tiptap-editor/resources/**/*.blade.php"
-
-       
-    ],
+    content: ["./resources/**/*.blade.php"],
     theme: {
         extend: {
             screens: {
@@ -16,19 +11,25 @@ export default {
             },
             colors: {
                 primary: {
-                    400: "#3c4d6c",
+                    400: "#2f4571",
+                    600: "#00205a",
                 },
                 secondary: {
-                    400: "#f9beac",
-                    600: "#ebb3a2",
+                    400: "#ba0d2f",
+                    600: "#a13137",
                 },
-               background:{
-                200: "#ffffff",
-                300: "#fafafa",
-               }
+                fontDark: "#2d2d2e",
+                fontLight: "#ffffff",
+                bgLight: {
+                    200: "#ffffff",
+                    300: "#fafafa",
+                    400:'#dfe2e4',
+                    500:'#d1d4d6',
+                    600:'#cfd3d6',
 
+                },
             },
         },
     },
-    plugins: [require('@tailwindcss/typography'),],
+    plugins: [require("@tailwindcss/typography")],
 };

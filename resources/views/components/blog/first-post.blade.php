@@ -11,7 +11,7 @@
     <div class="flex justify-start items-center gap-5">
 
         @foreach ($post->categories as $category)
-            <x-link-btn type='secondary' href="{{ $category->slug }}">{{ $category->title }}</x-link-btn>
+            <x-ui.link-btn wire:navigate :key="$category->slug" type='secondary' href="{{ $category->slug }}">{{ $category->title }}</x-ui.link-btn>
         @endforeach
 
         <span class="text-sm">{{ $post->getReadingTime() }} min</span>

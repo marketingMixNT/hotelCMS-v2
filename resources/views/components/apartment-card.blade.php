@@ -4,7 +4,7 @@
         <div class="overflow-hidden relative"><img src="{{ $img }}" alt=""
                 class="group-hover:scale-110 duration-500">
             
-                <x-link-btn class="absolute left-8 bottom-8" type="secondary" href="">Kategoria</x-link-btn>
+                <x-ui.link-btn class="absolute left-8 bottom-8" type="secondary" href="">Kategoria</x-ui.link-btn>
             </div>
         <div class="flex justify-between items-center px-2 py-4">
 
@@ -14,7 +14,7 @@
                 <span class="">od {{ $price }}zł</span>
 
             </div>
-            <div class="self-end mb-3"><x-link-btn href="{{ $link }}">Sprawdź</x-link-btn></div>
+            <div class="self-end mb-3"><x-ui.link-btn href="{{ $link }}">Sprawdź</x-ui.link-btn></div>
         </div>
     </a>
 </div>

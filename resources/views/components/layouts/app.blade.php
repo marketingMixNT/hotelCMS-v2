@@ -33,12 +33,11 @@
 
 
 
-    {{-- @filamentStyles --}}
     @vite('resources/scss/app.scss')
 
 </head>
 
-<body class="relative">
+<body class="relative overflow-x-hidden">
 <x-shared.header>
     {{ $header }}
 </x-shared.header>
@@ -49,7 +48,6 @@
 </main>
 
 <x-shared.footer/>
-{{-- @filamentScripts() --}}
 @vite('resources/js/app.js')
 </body>
 

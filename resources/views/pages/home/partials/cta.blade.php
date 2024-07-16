@@ -8,7 +8,7 @@ class="bg-[url('/public/assets/img/cta.jpg')] bg-no-repeat bg-cover bg-center bg
     <p class="text-lg">
         Melden Sie sich für unseren Newsletter an.
     </p>
-    <x-link-btn href="#">Zarezerwuj</x-link-btn>
+    <x-ui.link-btn href="#">Zarezerwuj</x-ui.link-btn>
 </div>
 
 </section>

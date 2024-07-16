@@ -6,7 +6,7 @@
             </h2>
             <p class="text-lg">Erkunden Sie Europa mit unseren 'Wonderful Stays' – Ihre Traumunterkunft, von malerischen Chalets bis hin zu urbanen Apartments.
             </p>
-            <x-link-btn href="">Sprawdź</x-link-btn>
+            <x-ui.link-btn href="">Sprawdź</x-ui.link-btn>
         </div>
         <div class="w-full h-full overflow-hidden">
             <img src="{{ asset('assets/img/map.jpg') }}" alt="" class="w-full h-full max-h-[500px] lg:max-h-[700px] object-cover  hover:scale-110 duration-500">

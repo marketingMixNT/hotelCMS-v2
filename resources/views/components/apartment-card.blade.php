@@ -1,7 +1,7 @@
 @props(['apartment'])
 
 <div class="flex flex-col group ">
-    <a href="#">
+    <a href="{{route('apartment.show',$apartment->slug)}}">
 
         <div class="overflow-hidden relative">
             <div class="overflow-hidden">
@@ -12,7 +12,7 @@
             <div class="flex justify-start items-center mt-4  gap-y-3 flex-wrap">
 
                 @foreach ($apartment->categories as $category)
-                    {{-- <x-ui.link-btn class="absolute left-8 bottom-8" type="badge-small" href="">{{$category->title}}</x-ui.link-btn> --}}
+                 
                     <x-ui.link-btn class="mr-4" type="badge-small" href="">{{ $category->title }}</x-ui.link-btn>
                 @endforeach
             </div>
@@ -25,7 +25,7 @@
                 <span class="text-sm">od <span class="text-lg">{{ $apartment->price }}</span> zł</span>
 
             </div>
-            <div class="self-end mb-3"><x-ui.link-btn href="#">Sprawdź</x-ui.link-btn></div>
+            <div class="self-end mb-3"><x-ui.link-btn href="{{route('apartment.show',$apartment->slug)}}">Sprawdź</x-ui.link-btn></div>
         </div>
     </a>
 </div>

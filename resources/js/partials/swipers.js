@@ -1,10 +1,5 @@
 import Swiper from "swiper";
-import {
-    Autoplay,
-   
-    Navigation,
-   
-} from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
 // ADVANTAGES
@@ -40,4 +35,42 @@ new Swiper(".advantages-swiper", {
     },
 
     modules: [Autoplay, Navigation],
+});
+
+//APARTMENT GALLERY
+new Swiper(".apartment-gallery-swiper", {
+    loop: true,
+    effect: "fade",
+    grabCursor: true,
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 50,
+    breakpoints: {
+        450: {
+            slidesPerView: 2,
+        },
+        650: {
+            slidesPerView: 3,
+        },
+        1000: {
+            slidesPerView: 4,
+        },
+    },
+
+    autoplay: {
+        delay: 3500,
+        disableOnInteraction: true,
+        pauseOnMouseEnter: true,
+    },
+    navigation: {
+        nextEl: ".apartment-gallery-next",
+        prevEl: ".apartment-gallery-prev",
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        
+    },
+
+    modules: [Autoplay, Navigation, Pagination],
 });

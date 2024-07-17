@@ -4,6 +4,7 @@ import './partials/dynamicTyping'
 import './partials/swipers'
 
 
+import 'fslightbox';
 
 
 

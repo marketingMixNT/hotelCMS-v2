@@ -2,3 +2,10 @@ body {
     font-family: "IBM Plex Sans", sans-serif;
     @apply text-primary-400
 }
+
+
+
+.swiper-pagination-bullet-active {
+    color: #fff;
+    background: black !important
+  }

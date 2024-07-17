@@ -35,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight(fn () => auth()->check() ? '40px' : '100px')
             ->colors([
                 'primary' => Color::hex('#ba0d2f'),
-                'gray' => Color::hex('#2f4571'),
+                'gray' => Color::Slate,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

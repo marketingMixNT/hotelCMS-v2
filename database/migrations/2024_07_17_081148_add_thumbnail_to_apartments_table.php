@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apartment_category', function (Blueprint $table) {
-            $table->foreignId('apartment_id');
-            $table->foreignId('category_id');
+        Schema::table('apartments', function (Blueprint $table) {
+            $table->text('thumbnail');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apartment_category');
+        Schema::table('apartments', function (Blueprint $table) {
+            $table->dropColumn('thumbnail');
+        });
     }
 };

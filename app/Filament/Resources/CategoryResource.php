@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use App\Models\Category;
 use Filament\Forms\Form;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CategoryResource extends Resource
 {
@@ -40,15 +42,37 @@ class CategoryResource extends Resource
                     ->minLength(3)
                     ->maxLength(255)
                     ->helperText('Przyjazny adres url który wygeneruje się automatycznie na podstawie nazwy apartamentu.'),
+
                 Forms\Components\Select::make('type')
                     ->label('Rodzaj')
                     ->required()
                     ->multiple()
+                    ->live()
                     ->options([
                         'apartamenty' => 'apartamenty',
                         'posty' => 'posty',
                     ])
                     ->helperText('Wybierz do czego chcesz przypisać kategorię'),
+
+                Forms\Components\FileUpload::make('thumbnail')
+                    ->visible(fn (Get $get) => in_array('apartamenty', $get('type') ?? []))
+                    ->label('Miniaturka')
+                    ->directory('category-images')
+                    ->getUploadedFileNameForStorageUsing(
+                        fn (TemporaryUploadedFile $file): string => 'category-images-' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
+                    )
+                    ->image()
+                    ->maxSize(4096)
+                    ->optimize('webp')
+                    ->imageEditor()
+                    ->imageEditorAspectRatios([
+                        null,
+                        '16:9',
+                        '4:3',
+                        '1:1',
+                    ])
+                    ->required(),
+
 
             ]);
     }
@@ -57,6 +81,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('thumbnail')
+                ->label('Miniaturka'),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Tytuł')
                     ->searchable(),

@@ -1,6 +1,13 @@
 models:
-  Advantage:
-    title: text
-    thumbnail: text
-    order: integer nullable
-    
+  Apartment:
+    name: text
+    slug: text
+    short_desc: text
+    desc: text
+    persons: integer
+    region: text
+    price: integer
+    link: text
+    gallery: text
+    relationships:
+      belongsTo: Category

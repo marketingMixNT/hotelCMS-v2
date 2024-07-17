@@ -17,7 +17,7 @@
     @endisset
 
     <!--Title-->
-    <title>{{ isset($title) ? $title : '' }} - Sunny Shoreline</title>
+    <title>{{ isset($title) ? $title : '' }} - Saga Fiordów</title>
     <meta name="description" content="{{ isset($description) ? $description : '' }}">
 
 

@@ -1,10 +1,11 @@
 created:
-    - database/factories/ApartmentFactory.php
-    - database/migrations/2024_07_17_070719_create_apartments_table.php
-    - app/Models/Apartment.php
+    - database/factories/BenefitFactory.php
+    - database/migrations/2024_07_17_095532_create_benefits_table.php
+    - app/Models/Benefit.php
 models:
     Advantage: { title: text, thumbnail: text, order: 'integer nullable default:NULL' }
     Category: { title: string, slug: string, type: string, thumbnail: 'text nullable default:NULL' }
     Post: { title: text, slug: text, thumbnail: text, content: text, published_at: 'datetime nullable default:NULL', featured: 'boolean nullable default:NULL' }
     User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
     Apartment: { name: text, slug: text, short_desc: text, desc: text, persons: integer, region: text, price: integer, link: text, gallery: text, relationships: { belongsTo: Category } }
+    Benefit: { title: text, content: text, relationships: { belongsTo: Apartment } }

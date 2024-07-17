@@ -1,13 +1,6 @@
 models:
-  Apartment:
-    name: text
-    slug: text
-    short_desc: text
-    desc: text
-    persons: integer
-    region: text
-    price: integer
-    link: text
-    gallery: text
+  Benefit:
+    title: text
+    content: text
     relationships:
-      belongsTo: Category
+      belongsTo: Apartment

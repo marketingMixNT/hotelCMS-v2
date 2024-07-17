@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -46,4 +47,20 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Category::class,'category_apartment');
     }
+    public function advantages(): BelongsToMany
+    {
+        return $this->belongsToMany(Advantage::class,);
+    }
+
+    public function benefits(): HasMany
+    {
+        return $this->hasMany(Benefit::class);
+    }
+
+
+    public function getThumbnailUrl() :string
+    {
+        return  asset('storage/' . $this->thumbnail);
+    }
+
 }

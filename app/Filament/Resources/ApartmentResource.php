@@ -7,16 +7,19 @@ use Filament\Tables;
 use Filament\Forms\Set;
 use App\Models\Category;
 use Filament\Forms\Form;
+use App\Models\Advantage;
 use App\Models\Apartment;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Repeater;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ApartmentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ApartmentResource\RelationManagers;
+use App\Models\Benefit;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ApartmentResource extends Resource
@@ -30,7 +33,7 @@ class ApartmentResource extends Resource
         return $form
             ->schema([
 
-                //DESCRIPTION
+                //INFO
                 Section::make('Główne informacje')
                     ->icon('heroicon-o-information-circle')
                     ->columns(2)
@@ -53,19 +56,7 @@ class ApartmentResource extends Resource
                             ->placeholder('Przyjazny adres url który wygeneruje się automatycznie')
                             ->readOnly(),
 
-                        Forms\Components\Select::make('category_id')
-                            ->placeholder('Mozesz wybrac kilka')
-                            ->multiple()
-                            ->searchable()
-                            ->editOptionForm(Category::getForm())
-                            ->createOptionForm(Category::getForm())
-                            ->preload()
-                            ->label('Kategoria')
-                            ->relationship('categories', 'title', function ($query) {
-                                $query->whereJsonContains('type', 'apartamenty');
-                            })
-                            ->required()
-                            ->columnSpanFull(),
+
 
                         Fieldset::make('Info')
                             ->schema([
@@ -93,7 +84,40 @@ class ApartmentResource extends Resource
 
 
                     ]),
+                //DESCRIPTION
+                Section::make('Kategorie oraz zalety')
+                    ->icon('heroicon-o-tag')
+                    ->columns(2)
+                    ->collapsible()
+                    ->collapsed()
+                    ->description('Przypisz kategorię oraz zalety')
+                    ->schema([
+                        Forms\Components\Select::make('category_id')
+                            ->placeholder('Mozesz wybrac kilka')
+                            ->multiple()
+                            ->searchable()
 
+                            ->createOptionForm(Category::getForm())
+                            ->preload()
+                            ->label('Kategoria')
+                            ->relationship('categories', 'title', function ($query) {
+                                $query->whereJsonContains('type', 'apartamenty');
+                            })
+                            ->required()
+                            ->columnSpanFull(),
+
+                        Forms\Components\Select::make('advantage_id')
+                            ->placeholder('Mozesz wybrac kilka')
+                            ->multiple()
+                            ->searchable()
+
+                            ->createOptionForm(Advantage::getForm())
+                            ->preload()
+                            ->label('Zalety')
+                            ->relationship('advantages', 'title',)
+                            ->required()
+                            ->columnSpanFull(),
+                    ]),
 
                 //ADDRESS
                 Section::make('Adres')
@@ -135,7 +159,27 @@ class ApartmentResource extends Resource
                             ->required()
                             ->columnSpanFull(),
                     ]),
+                     //BENEFITS
+                    Section::make('Benefity')
+                    ->icon('heroicon-o-hand-thumb-up')
+                    ->columns(2)
+                    ->collapsible()
+                    ->collapsed()
+                    ->description('Dodaj benefity')
+                    ->schema([
 
+                        Repeater::make('benefits')
+                            ->label('Benefity')
+                            ->relationship()
+                            ->schema(Benefit::getForm())
+                            ->columnSpanFull()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->addActionLabel('Dodaj benefit')
+                            ->collapsed()
+                            ->cloneable()
+                            ->grid(2)
+
+                    ]),
                 //IMAGES
                 Section::make('Zdjęcia')
                     ->icon('heroicon-o-photo')
@@ -183,11 +227,7 @@ class ApartmentResource extends Resource
                             ->required()
                             ->columnSpanFull(),
                     ]),
-
-
-
-
-
+               
             ]);
     }
 
@@ -209,7 +249,7 @@ class ApartmentResource extends Resource
                 Tables\Columns\TextColumn::make('categories.title')
                     ->label('Kategorie')
                     ->searchable(),
-                    
+
             ])
             ->filters([
                 //

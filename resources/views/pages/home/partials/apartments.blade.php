@@ -8,7 +8,7 @@
 
             <x-apartment-card :apartment="$apartment" />
         @endforeach
-
+    </div>
 
 
 </x-section>

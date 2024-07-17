@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
+
+    public function index()
+    {
+        return view("pages.apartment.index");
+    }
     public function show(Apartment $apartment)
     {
 

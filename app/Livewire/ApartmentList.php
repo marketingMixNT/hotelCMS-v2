@@ -2,38 +2,38 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
 use Livewire\Component;
 use App\Models\Category;
-use Livewire\WithPagination;
+use App\Models\Apartment;
 use Livewire\Attributes\Url;
+use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
 
-class PostList extends Component
+class ApartmentList extends Component
 {
+
+
     use WithPagination;
 
     #[Url]
     public $category = '';
 
     #[Computed]
-    public function getPostsProperty()
+    public function getApartmentsProperty()
     {
-        return Post::published()
-            ->with('categories')
+        return Apartment::with('categories')
             ->when($this->category, function ($query) {
                 $query->whereHas('categories', function ($query) {
                     $query->where('slug', $this->category);
                 });
             })
-            ->orderBy('published_at', 'desc')
-            ->paginate(12);
+            ->paginate(4);
     }
 
     #[Computed]
     public function getCategoriesProperty()
     {
-        return Category::whereJsonContains('type', 'posty')->get();
+        return Category::whereJsonContains('type', 'apartamenty')->get();
     }
 
     #[Url]
@@ -42,13 +42,13 @@ class PostList extends Component
         $this->category = $slug;
         $this->resetPage();
         $this->emitSelf('refreshComponent');
-        
     }
+
 
     public function render()
     {
-        return view('livewire.post-list', [
-            'posts' => $this->posts,
+        return view('livewire.apartment-list',[
+            'apartments' => $this->apartments,
             'categories' => $this->categories
         ]);
     }
